@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eye Project</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Import Map for Three.js -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+    
+    <!-- p5.js and ML5 from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    
+    <!-- Your modules - load order matters -->
+    <script type="module" src="sharedState.js"></script>
+    <script type="module" src="faceDetection.js"></script>
+    <script type="module" src="eyeClass.js"></script>
+    <script type="module" src="main.js"></script>
+  </head>
+  <body>
+    <canvas id="bg"></canvas>
+    <div class="content-wrapper">
+      <h1 class="main-title">Eye Tracking Project</h1>
+      <p class="subtitle">Move your face to control the eyes</p>
+    </div>
+  </body>
+</html>
