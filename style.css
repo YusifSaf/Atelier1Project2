@@ -5,11 +5,46 @@
 }
 
 body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
   font-family: system-ui, -apple-system, sans-serif;
   overflow: hidden;
   background: #000;
   color: #fff;
 }
+  
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 1; /* Keep it below overlays */
+}
+
+.main-title {
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: white;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+  display: none;
+} 
+
+.show-warning {
+    display: flex;
+    animation: fadeIn 0.4s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  } 
+  
 
 /* This is to hide the p5 canvas (the face tracking) */
 #defaultCanvas0 {

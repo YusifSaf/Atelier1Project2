@@ -1,6 +1,9 @@
 // Shared state for communication between face tracking and Three.js
 export const sharedState = {
-    facePosition: { x: 320, y: 240, z: 0 }
+    facePosition: { x: 320, y: 240, z: 0 },
+
+    // For fft analyzing
+    fftData: {size: 1, fftRangeMin: Infinity, fftRangeMax: -Infinity,}
 };
 
 // Utility mapping function
