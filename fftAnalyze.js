@@ -1,5 +1,51 @@
-// Audio Visualizer with FFT Analysis
-// Refactored for Vite.js module-based project using p5 instance mode
+// let mic, fft;
+//   let fftDetailLevel = 128;
+//   let spectrum;
+//   let testSong;
+//   let threshold = 10;
+//   let r = 0;
+//   let xOff = 0;
+//   let fftColorCoefficent = 1;
+
+//   let nyquist;
+//   let freqPerBin;
+//   let lowFreq = 80;
+//   let highFreq = 7000;
+//   let lowBin;
+//   let highBin;
+
+//   let fftSize = 1;
+//   let fftRangeMin = Infinity;
+//   let fftRangeMax = -Infinity;
+
+//  function setup() {
+//     createCanvas(windowWidth, windowHeight, WEBGL);
+//     angleMode(DEGREES);
+//     colorMode(HSB);
+//     noStroke();
+
+//     // FFT ANALYZER
+//     mic = new p5.AudioIn();
+    
+//     // Get available audio input devices and let user select
+//     selectAudioDevice();
+    
+//     fft = new p5.FFT(0.8, fftDetailLevel);
+//     if (fft) {
+//     fft.setInput(testSong);
+//     }
+//     testSong.play();
+
+//     nyquist = sampleRate() / 2;
+//     freqPerBin = nyquist / fftDetailLevel;
+//     lowBin = floor(lowFreq / freqPerBin);
+//     highBin = ceil(highFreq / freqPerBin);
+//   }
+  
+  
+
+// // Audio Visualizer with FFT Analysis
+// // Refactored for Vite.js module-based project using p5 instance mode
 import { sharedState } from './sharedState.js';
 
 const fftAnalyze = (p) => {
@@ -31,29 +77,30 @@ const fftAnalyze = (p) => {
   // PRELOAD
   // ==============================================
   p.preload = () => {
-    testSong = p.loadSound('./Deftones – Knife Prty (Official Visualizer).mp3');
+    testSong = p.loadSound('/Blizzard (Hotline Miami 2  Wrong Number OST)   Light Club.mp3');
   };
 
   // ==============================================
   // SETUP
   // ==============================================
   p.setup = () => {
-    p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL);
+    p.createCanvas(1, 1, p.WEBGL);
     p.angleMode(p.DEGREES);
     p.colorMode(p.HSB);
     p.noStroke();
 
     // FFT ANALYZER
     mic = new p5.AudioIn();
+    mic.start();
     
     // Get available audio input devices and let user select
-    selectAudioDevice();
+    // selectAudioDevice();
     
     fft = new p5.FFT(0.8, fftDetailLevel);
     if (fft) {
-      fft.setInput(testSong);
+      fft.setInput(mic);
     }
-    testSong.play();
+    // testSong.play();
 
     nyquist = p.sampleRate() / 2;
     freqPerBin = nyquist / fftDetailLevel;
@@ -93,7 +140,7 @@ const fftAnalyze = (p) => {
         sharedState.fftData.fftRangeMin = fftRangeMin;
         sharedState.fftData.fftRangeMax = fftRangeMax;
 
-        console.log(sharedState.fftData.fftRangeMax);
+        // console.log(sharedState.fftData.fftRangeMax);
     }
 
     // for (let i = lowBin; i <= highBin; i++) {
@@ -144,46 +191,46 @@ const fftAnalyze = (p) => {
   // ==============================================
   // AUDIO DEVICE SELECTION
   // ==============================================
-  function selectAudioDevice() {
-    navigator.mediaDevices.enumerateDevices()
-      .then(devices => {
-        const audioInputs = devices.filter(device => device.kind === 'audioinput');
+//   function selectAudioDevice() {
+//     navigator.mediaDevices.enumerateDevices()
+//       .then(devices => {
+//         const audioInputs = devices.filter(device => device.kind === 'audioinput');
         
-        console.log('=== Available audio input devices ===');
-        audioInputs.forEach((device, index) => {
-          console.log(`${index}: ${device.label || 'Unknown device'} (ID: ${device.deviceId})`);
-        });
-        console.log('=====================================');
+//         console.log('=== Available audio input devices ===');
+//         audioInputs.forEach((device, index) => {
+//           console.log(`${index}: ${device.label || 'Unknown device'} (ID: ${device.deviceId})`);
+//         });
+//         console.log('=====================================');
         
-        // Automatically select a specific device by name
-        const audioInterface = audioInputs.find(device => 
-          device.label.toLowerCase().includes('focusrite') ||
-          device.label.toLowerCase().includes('scarlett') ||
-          device.label.toLowerCase().includes('audio interface') ||
-          device.label.toLowerCase().includes('behringer') ||
-          device.label.toLowerCase().includes('m-audio') ||
-          device.label.toLowerCase().includes('presonus') ||
-          device.label.toLowerCase().includes('your-device-name-here')
-        );
+//         // Automatically select a specific device by name
+//         const audioInterface = audioInputs.find(device => 
+//           device.label.toLowerCase().includes('focusrite') ||
+//           device.label.toLowerCase().includes('scarlett') ||
+//           device.label.toLowerCase().includes('audio interface') ||
+//           device.label.toLowerCase().includes('behringer') ||
+//           device.label.toLowerCase().includes('m-audio') ||
+//           device.label.toLowerCase().includes('presonus') ||
+//           device.label.toLowerCase().includes('your-device-name-here')
+//         );
         
-        if (audioInterface) {
-          const deviceIndex = audioInputs.indexOf(audioInterface);
-          console.log(`✓ Using audio interface: ${audioInterface.label} (Index: ${deviceIndex})`);
-          mic.setSource(deviceIndex);
-          mic.start();
-        } else {
-          console.log('⚠ Audio interface not found by name, using default input (index 0)');
-          console.log('To use a different device, either:');
-          console.log('1. Update the search terms in selectAudioDevice()');
-          console.log('2. Or manually set: mic.setSource(INDEX_NUMBER)');
-          mic.start();
-        }
-      })
-      .catch(err => {
-        console.error('Error accessing audio devices:', err);
-        mic.start();
-      });
-  }
+//         if (audioInterface) {
+//           const deviceIndex = audioInputs.indexOf(audioInterface);
+//           console.log(`✓ Using audio interface: ${audioInterface.label} (Index: ${deviceIndex})`);
+//           mic.setSource(deviceIndex);
+//           mic.start();
+//         } else {
+//           console.log('⚠ Audio interface not found by name, using default input (index 0)');
+//           console.log('To use a different device, either:');
+//           console.log('1. Update the search terms in selectAudioDevice()');
+//           console.log('2. Or manually set: mic.setSource(INDEX_NUMBER)');
+//           mic.start();
+//         }
+//       })
+//       .catch(err => {
+//         console.error('Error accessing audio devices:', err);
+//         mic.start();
+//       });
+//   }
 
   // ==============================================
   // WINDOW RESIZE

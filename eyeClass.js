@@ -78,6 +78,7 @@ class eyeModel {
             if (this.model) {
                 this.model.lookAt(this.intersectionPoint.x, this.intersectionPoint.y, 2);
             }
+            // console.log(sharedState.fftData.size);
         }
     }
 

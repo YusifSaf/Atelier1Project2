@@ -96,19 +96,35 @@ function animate(time) {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
   
-  const coef = THREE.MathUtils.mapLinear(Math.sin(time / 800), -1, 1, 1, 1.01);
+  //This is how to control threshold
+  let fftSize = THREE.MathUtils.mapLinear(sharedState.fftData.size, 150, 300, 0.8, 1.5);
+    eyes.forEach((eye) => {
+      eye.update();
+      if (eye.model && eye.targetScale){
+        eye.targetScale.set(fftSize, fftSize, fftSize);
+        eye.model.scale.lerp(eye.targetScale, lerpSpeed);
+        // eye.model.scale.set(
+        //   eye.model.scale.x *= coef,
+        //   eye.model.scale.y *= coef,
+        //   eye.model.scale.z *= coef,
+        // );
+      }
+    })
+  console.log(sharedState.fftData.size);
+
+  // const coef = THREE.MathUtils.mapLinear(Math.sin(time / 800), -1, 1, 1, 1.01);
   
-  eyes.forEach((eye) => {
-    eye.update();
-    if (eye.model && eye.targetScale) {
-      eye.model.scale.lerp(eye.targetScale, lerpSpeed);
-      eye.model.scale.set(
-        eye.model.scale.x * coef,
-        eye.model.scale.y * coef,
-        eye.model.scale.z * coef
-      );
-    }
-  });
+  // eyes.forEach((eye) => {
+  //   eye.update();
+  //   if (eye.model && eye.targetScale) {
+  //     eye.model.scale.lerp(eye.targetScale, lerpSpeed);
+  //     eye.model.scale.set(
+  //       eye.model.scale.x * coef,
+  //       eye.model.scale.y * coef,
+  //       eye.model.scale.z * coef
+  //     );
+  //   }
+  // });
 }
 
 animate();
