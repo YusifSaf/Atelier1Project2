@@ -77,7 +77,7 @@ const fftAnalyze = (p) => {
   // PRELOAD
   // ==============================================
   p.preload = () => {
-    testSong = p.loadSound('/Blizzard (Hotline Miami 2  Wrong Number OST)   Light Club.mp3');
+    // testSong = p.loadSound('/Blizzard (Hotline Miami 2  Wrong Number OST)   Light Club.mp3');
   };
 
   // ==============================================
@@ -91,7 +91,15 @@ const fftAnalyze = (p) => {
 
     // FFT ANALYZER
     mic = new p5.AudioIn();
-    mic.start();
+    // p.createPhoneCamera("user", false, 'fixed');
+    // mic.start();
+
+    // Enable microphone with tap permission
+    p.enableMicTap("Press to Enable Mic");
+    // p.enableCameraTap("Press to Enable Camera");
+    
+    // Lock mobile gestures
+    p.lockGestures();
     
     // Get available audio input devices and let user select
     // selectAudioDevice();
