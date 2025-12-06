@@ -90,9 +90,9 @@ const fftAnalyze = (p) => {
     p.noStroke();
 
     // FFT ANALYZER
-    // mic = new p5.AudioIn();
+    mic = new p5.AudioIn();
     // p.createPhoneCamera("user", false, 'fixed');
-    // mic.start();
+    mic.start();
 
     // Enable microphone with tap permission
     // p.enableMicTap("Press to Enable Mic");
