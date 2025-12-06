@@ -90,16 +90,16 @@ const fftAnalyze = (p) => {
     p.noStroke();
 
     // FFT ANALYZER
-    mic = new p5.AudioIn();
+    // mic = new p5.AudioIn();
     // p.createPhoneCamera("user", false, 'fixed');
     // mic.start();
 
     // Enable microphone with tap permission
-    p.enableMicTap("Press to Enable Mic");
+    // p.enableMicTap("Press to Enable Mic");
     // p.enableCameraTap("Press to Enable Camera");
     
     // Lock mobile gestures
-    p.lockGestures();
+    // p.lockGestures();
     
     // Get available audio input devices and let user select
     // selectAudioDevice();
