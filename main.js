@@ -97,11 +97,11 @@ function animate(time) {
   renderer.render(scene, camera);
   
   //This is how to control threshold
-  let fftSize = THREE.MathUtils.mapLinear(sharedState.fftData.size, 150, 300, 1, 1.5);
+  let fftSize = THREE.MathUtils.mapLinear(sharedState.fftData.size, 150, 300, 1, 1.8);
     eyes.forEach((eye) => {
       eye.update();
       if (eye.model && eye.targetScale){
-        eye.targetScale.set(fftSize, fftSize, fftSize);
+        eye.targetScale.set(fftSize-0.2, fftSize-0.2, fftSize-0.2);
         eye.model.scale.lerp(eye.targetScale, lerpSpeed);
         // eye.model.scale.set(
         //   eye.model.scale.x *= coef,

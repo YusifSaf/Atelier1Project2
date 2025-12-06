@@ -32,13 +32,15 @@
     <script type="module" src="fftAnalyze.js"></script>
   </head>
   <body>
-    <!-- <div class="rotate-warning" id="rotateWarning">
-      Please rotate your device and reload the page🌐
-    </div> -->
     <div class="content-wrapper">
       <h1 class="main-title" id="rotateWarning">Turn to Landscape</h1>
-      <p class="subtitle">Move your face to control the eyes</p>
+      <p class="subtitle">It can see you and it can hear you. Move your head and speak.</p>
     </div>
+    
+    <video autoplay muted loop id="bg-video">
+    <source src="/DynamicBGTest2.mp4" type="video/mp4">
+    </video>
+    <canvas id="bg"></canvas>
     <script>
       const warning = document.getElementById("rotateWarning");
 
