@@ -101,7 +101,7 @@ function animate(time) {
     eyes.forEach((eye) => {
       eye.update();
       if (eye.model && eye.targetScale){
-        eye.targetScale.set(fftSize-0.2, fftSize-0.2, fftSize-0.2);
+        eye.targetScale.set(fftSize, fftSize, fftSize);
         eye.model.scale.lerp(eye.targetScale, lerpSpeed);
         // eye.model.scale.set(
         //   eye.model.scale.x *= coef,
